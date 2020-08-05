@@ -1,36 +1,24 @@
 title = "Hugo in Civo"
-baseURL = "CLUSTER_URL.k8s.civo.com"
-languageCode = "en-us"
+baseURL = "CLUSTER_ID.k8s.civo.com"
 theme = "simple-blog"
-
-MetaDataFormat = "yaml"
+copyright = "© 2020 copyright Civo."
+paginate = 3
+languageCode = "en"
 DefaultContentLanguage = "en"
-SectionPagesMenu = "main"
-Paginate = 3 # this is set low for demonstrating with dummy content. Set to a higher number
-googleAnalytics = ""
-enableRobotsTXT = true
+enableInlineShortcodes = true
+footnoteReturnLinkContents = "^"
 
-[sitemap]
-  changefreq = "monthly"
-  priority = 0.5
-  filename = "sitemap.xml"
+[menu]
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 10
+
+[taxonomies]
+category = "categories"
+tag = "tags"
 
 [params]
-  favicon = ""
-  site_logo = ""
-  description = "The best cloud in internet."
-  facebook = ""
-  twitter = "https://twitter.com/GoHugoIO"
-  instagram = ""
-  youtube = ""
-  github = ""
-  gitlab = ""
-  linkedin = ""
-  mastodon = ""
-  slack = ""
-  stackoverflow = ""
-  rss = ""
-  # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
-  background_color_class = "bg-black"
-  featured_image = "/images/gohugo-default-sample-hero-image.jpg"
-  recent_posts_number = 2
+description = "the best blog in Civo"

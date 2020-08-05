@@ -53,8 +53,8 @@ jobs:
 
     - name: Replace our cluster ID
       run: > 
-        sed -i "s/CLUSTER_ID/`civo k3s show my-site -o custom -f ID`/" k8s.yaml &&
-        sed -i "s/CLUSTER_ID/`civo k3s show my-site -o custom -f ID`/" config.toml
+        sed -i'' -e "s/CLUSTER_ID/`civo k3s show my-site -o custom -f ID`/" k8s.yaml &&
+        sed -i'' -e "s/CLUSTER_ID/`civo k3s show my-site -o custom -f ID`/" config.toml
 
     - uses: jakejarvis/hugo-build-action@master
       with:
