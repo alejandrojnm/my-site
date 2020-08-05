@@ -69,7 +69,7 @@ jobs:
         tags: latest
 
     - name: Deploy our app to the cluster
-      run: kubectl apply -f k8s.yml
+      run: kubectl apply -f k8s.yaml
 
     - name: Wait for the deployment to be ready
       run: >
