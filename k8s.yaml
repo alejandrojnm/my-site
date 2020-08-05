@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-site
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-site
+  template:
+    metadata:
+      labels:
+        app: my-site
+    spec:
+      containers:
+        - image: alejandrojnm/my-site:latest
+          name: my-site
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-site
+  labels:
+    app: my-site
+spec:
+  ports:
+    - name: "my-site"
+      port: 80
+  selector:
+    app: my-site
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: my-site-ingress
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+  labels:
+    app: my-site
+spec:
+  rules:
+    - host: CLUSTER_ID.k8s.civo.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: my-site
+              servicePort: 80
