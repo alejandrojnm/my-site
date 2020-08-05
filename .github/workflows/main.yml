@@ -43,11 +43,19 @@ jobs:
 
     - name: Authenticate our Kubernetes cluster to Docker Hub
       run: >
-        kubectl create secret docker-registry regcred
+        if kubectl get secret regcred; then
+          kubectl replace --force secret docker-registry regcred
         --docker-email=${{secrets.DOCKER_EMAIL}}
         --docker-server=docker.io
         --docker-username=${{ secrets.DOCKER_USERNAME }}
-        --docker-password=${{ secrets.DOCKER_TOKEN }}    
+        --docker-password=${{ secrets.DOCKER_TOKEN }}
+        else
+          kubectl create secret docker-registry regcred
+        --docker-email=${{secrets.DOCKER_EMAIL}}
+        --docker-server=docker.io
+        --docker-username=${{ secrets.DOCKER_USERNAME }}
+        --docker-password=${{ secrets.DOCKER_TOKEN }}
+        fi 
 
     - name: Replace our cluster ID
       run: > 
