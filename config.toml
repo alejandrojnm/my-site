@@ -1,5 +1,5 @@
 title = "Hugo in Civo"
-baseURL = "CLUSTER_ID.k8s.civo.com"
+baseURL = "http://CLUSTER_ID.k8s.civo.com/"
 theme = "simple-blog"
 copyright = "© 2020 copyright Civo."
 paginate = 3

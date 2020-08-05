@@ -79,3 +79,6 @@ jobs:
           ((i++));
           sleep 1;
         done
+
+    - name: Update application
+      run: kubectl patch deployment my-site -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
