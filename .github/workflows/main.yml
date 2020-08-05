@@ -20,8 +20,7 @@ jobs:
     
     - name: Create a k3s cluster
       run: >
-        ID=$(./civo k3s show my-site -o custom -f ID)
-        if [[ $ID == "" ]]; then
+        if [[ $(./civo k3s show my-site -o custom -f ID) == "" ]]; then
             civo k3s create my-site -n 2 --wait
         fi
         
